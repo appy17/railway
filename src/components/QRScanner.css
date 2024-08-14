@@ -1,0 +1,140 @@
+.qr-scanner-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 20px;
+     padding: 0 10px;
+   }
+   
+   .qr-reader {
+     position: relative;
+     margin-bottom: 20px;
+   }
+   
+   .qr-video {
+     width: 100%;
+     max-width: 300px;
+     height: auto;
+     border-radius: 10px;
+     object-fit: cover;
+   }
+   
+   .qr-box {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+   
+   .qr-frame {
+     width: 80px;
+     height: 80px;
+   }
+   
+   .scanned-result {
+     position: absolute;
+     top: 10px;
+     left: 10px;
+     z-index: 99999;
+     color: white;
+     background-color: rgba(0, 0, 0, 0.7);
+     padding: 10px;
+     border-radius: 5px;
+   }
+   
+   .fetched-data {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: #ffffff;
+     padding: 20px;
+     border-radius: 10px;
+     width: 100%;
+     max-width: 500px;
+     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+   }
+   
+   .fetched-data h2 {
+     margin-bottom: 15px;
+     color: #333;
+     text-align: center;
+   }
+   
+   .data-grid {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 10px;
+     width: 100%;
+   }
+   
+   .data-item {
+     background-color: #f9f9f9;
+     padding: 10px;
+     border-radius: 5px;
+     font-size: 14px;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+   }
+   
+   .data-item strong {
+     display: block;
+     font-weight: 600;
+     margin-bottom: 5px;
+     color: #555;
+   }
+   
+   .profile-pic-container {
+     grid-column: 1 / span 2;
+     display: flex;
+     justify-content: center;
+   }
+   
+   .profile-pic {
+     width: 80px;
+     height: 80px;
+     border-radius: 50%;
+     object-fit: cover;
+     margin-top: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+   
+   /* Media Queries for responsiveness */
+   @media (max-width: 768px) {
+     .data-grid {
+       grid-template-columns: 1fr; /* Single column on smaller screens */
+     }
+   
+     .qr-frame {
+       width: 60px;
+       height: 60px;
+     }
+   
+     .profile-pic {
+       width: 70px;
+       height: 70px;
+     }
+   }
+   
+   @media (max-width: 480px) {
+     .qr-video {
+       max-width: 250px;
+     }
+   
+     .qr-frame {
+       width: 50px;
+       height: 50px;
+     }
+   
+     .profile-pic {
+       width: 60px;
+       height: 60px;
+     }
+   
+     .fetched-data {
+       padding: 15px;
+     }
+   }
+   
