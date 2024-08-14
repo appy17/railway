@@ -4,7 +4,8 @@ import QrFrame from "../assets/qr-frame.svg";
 import axios from "axios";
 import "./QRScanner.css"; // Import the CSS file
 
-const QRScanner = () => {
+const Webcamp = () => {
+  const [camp, setCamp] = useState(false)
   const scanner = useRef(null);
   const videoEl = useRef(null);
   const qrBoxEl = useRef(null);
@@ -47,7 +48,7 @@ const QRScanner = () => {
     console.log(err);
   };
 
-  useEffect(() => {
+  const openLogic = () =>{
     if (videoEl.current && !scanner.current) {
       scanner.current = new QrScanner(videoEl.current, onScanSuccess, {
         onDecodeError: onScanFail,
@@ -70,7 +71,15 @@ const QRScanner = () => {
         scanner.current.stop();
       }
     };
-  }, []);
+  }
+
+  useEffect(() => {
+   if(camp){
+    openLogic()
+   }
+
+
+  }, [camp]);
 
   useEffect(() => {
     if (!qrOn) {
@@ -80,21 +89,26 @@ const QRScanner = () => {
     }
   }, [qrOn]);
 
+  const handaleOpenCamp = () =>{
+    setCamp(true)
+  }
+
   useEffect(() => {
     console.log("new", fetchData);
   }, [fetchData]);
 
   return (
     <div className="qr-scanner-container">
+      <button onClick={handaleOpenCamp}>Scan QR</button>
       <div className="qr-reader">
-        <video ref={videoEl} className="qr-video"></video>
-        <div ref={qrBoxEl} className="qr-box">
+      <video ref={videoEl} className="qr-video"></video>
+       {camp &&  <div ref={qrBoxEl} className="qr-box">
           <img
             src={QrFrame}
             alt="Qr Frame"
             className="qr-frame"
           />
-        </div>
+        </div>}
 
         {scannedResult && (
           <div className="scanned-result">
@@ -164,7 +178,7 @@ const QRScanner = () => {
                 View Document
               </a>
             </div>
-            <div className="data-item">
+            <div className="data-item" style={{marginBottom:'50px'}}>
               <strong>Police Verification Document:</strong>
               <a href={fetchData.policeVarificationDocument} target="_blank" rel="noopener noreferrer">
                 View Document
@@ -178,4 +192,4 @@ const QRScanner = () => {
   );
 };
 
-export default QRScanner;
+export default Webcamp;
